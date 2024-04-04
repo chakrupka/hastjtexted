@@ -95,14 +95,35 @@ const App = () => {
   };
 
   const getDate = ({ unix_time }) => {
+    // Create a Date object from the Unix timestamp (converted to milliseconds)
     const date = new Date(unix_time * 1000);
-    const hours = date.getHours();
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-    const seconds = date.getSeconds().toString().padStart(2, "0");
-    const formattedTime = `${hours}:${minutes}:${seconds}`;
 
-    console.log(formattedTime);
-    return formattedTime;
+    // Extract the month, date, year, hours, and minutes
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const month = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, "0"); // Ensure the minutes are always two digits
+
+    // Construct the formatted date-time string
+    const formattedString = `${month} ${day}, ${year} ${hours}:${minutes}`;
+    console.log(formattedString);
+
+    return formattedString;
   };
 
   useEffect(() => {
